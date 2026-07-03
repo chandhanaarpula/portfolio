@@ -1,0 +1,326 @@
+import "./App.css";
+import { useEffect } from "react";
+import Navbar from "./components/navbar";
+import profile from "./assets/profile.jpeg";
+import { MdEmail } from "react-icons/md";
+import { FaLinkedin, FaGithub, FaPhone, FaHtml5, FaCss3Alt, FaJsSquare, FaReact, FaMobileAlt, FaNodeJs, FaDatabase, FaGitAlt, FaCode, FaFire } from "react-icons/fa";
+import { FaLocationDot } from "react-icons/fa6";
+import { SiExpress, SiPostman } from "react-icons/si";
+import { FaBriefcase, FaAward } from "react-icons/fa";
+
+function App() {
+  useEffect(() => {
+    const elements = document.querySelectorAll(".reveal-section");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    elements.forEach((element) => observer.observe(element));
+
+    return () => observer.disconnect();
+  }, []);
+
+  const handleContactClick = () => {
+    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  const skillGroups = [
+    {
+      title: "Frontend",
+      skills: [
+        { name: "HTML5", icon: <FaHtml5 /> },
+        { name: "CSS3", icon: <FaCss3Alt /> },
+        { name: "JavaScript (ES6+)", icon: <FaJsSquare /> },
+        { name: "React.js", icon: <FaReact /> },
+        { name: "Responsive Web Design", icon: <FaMobileAlt /> },
+      ],
+    },
+    {
+      title: "Backend",
+      skills: [
+        { name: "Node.js", icon: <FaNodeJs /> },
+        { name: "Express.js", icon: <SiExpress /> },
+        { name: "Firebase", icon: <FaFire /> },
+      ],
+    },
+    {
+      title: "Database",
+      skills: [{ name: "MySQL", icon: <FaDatabase /> }],
+    },
+    {
+      title: "Tools & Technologies",
+      skills: [
+        { name: "Git", icon: <FaGitAlt /> },
+        { name: "GitHub", icon: <FaGithub /> },
+        { name: "VS Code", icon: <FaCode /> },
+        { name: "Postman", icon: <SiPostman /> },
+      ],
+    },
+  ];
+
+  return (
+    <div className="portfolio-app">
+      <Navbar />
+
+      <section className="hero reveal-section" id="home">
+        <div className="hero-text">
+          <h3>Hello, I'm 👋</h3>
+
+          <h1>Chandana Arpula</h1>
+
+          <h2>Full Stack Developer</h2>
+
+          <p>
+            Passionate Full Stack Developer and AI & ML student.
+            I enjoy building responsive web applications using
+            React, JavaScript, HTML, CSS and Node.js.
+          </p>
+
+          <div className="buttons">
+            <button onClick={() => window.open("/resume.docx", "_blank", "noopener,noreferrer")}>Download Resume</button>
+            <button className="contact-btn" onClick={handleContactClick}>Contact Me</button>
+          </div>
+        </div>
+
+        <div className="hero-image">
+          <img src={profile} alt="Profile" />
+        </div>
+      </section>
+
+      <section className="contact-section reveal-section" id="about">
+        <h2>About Me</h2>
+        <p>
+          I am Chandhana Arpula, an aspiring B.Tech student in Artificial Intelligence & Machine Learning with a Diploma in Electronics. I am a Full Stack Developer and currently working as a Backend Developer Intern, building responsive, user-friendly, and scalable web applications. I am passionate about learning new technologies, solving real-world problems, and continuously improving my technical skills. My goal is to become a skilled Software Engineer and contribute to innovative software solutions that create meaningful impact.
+        </p>
+      </section>
+
+      <section className="contact-section skills-section reveal-section" id="skills">
+        <h2>Technical Skills</h2>
+        {skillGroups.map((group) => (
+          <div className="skill-group" key={group.title}>
+            <h3>{group.title}</h3>
+            <div className="skills-grid">
+              {group.skills.map((skill) => (
+                <div className="skill-card" key={skill.name}>
+                  <span className="skill-icon">{skill.icon}</span>
+                  <span>{skill.name}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </section>
+
+      <section className="contact-section" id="projects">
+        <h2>Projects</h2>
+
+        <div className="project-card">
+          <div className="experience-icon">
+            <FaCode />
+          </div>
+          <div className="project-content">
+            <h3>Online Complaint Management System</h3>
+            <p className="experience-duration">December 2025 – June 2026</p>
+            <ul>
+              <li>Developed a web-based complaint management system to streamline complaint registration and tracking.</li>
+              <li>Enabled users to submit complaints and monitor their complaint status online.</li>
+              <li>Improved complaint handling, transparency, and response time through an organized workflow.</li>
+              <li>Implemented backend data management for secure storage and retrieval of complaint records.</li>
+            </ul>
+            <p className="project-tech"><strong>Technologies:</strong> HTML5, CSS3, JavaScript, React.js, Node.js, Express.js, MySQL</p>
+            <div className="project-links">
+              <a href="#" className="certificate-btn">GitHub</a>
+              <a href="#" className="certificate-btn">Live Demo</a>
+            </div>
+          </div>
+        </div>
+
+        <div className="project-card">
+          <div className="experience-icon">
+            <FaCode />
+          </div>
+          <div className="project-content">
+            <h3>Smart Electricity Billing System</h3>
+            <p className="experience-duration">February 2025 – June 2025</p>
+            <ul>
+              <li>Developed an automated electricity billing system to calculate and generate consumer bills.</li>
+              <li>Recorded electricity usage data and generated accurate billing information.</li>
+              <li>Reduced manual errors and improved billing efficiency through automation.</li>
+              <li>Designed a structured database for efficient consumer and billing data management.</li>
+            </ul>
+            <p className="project-tech"><strong>Technologies:</strong> HTML5, CSS3, JavaScript, MySQL</p>
+            <div className="project-links">
+              <a href="#" className="certificate-btn">GitHub</a>
+              <a href="#" className="certificate-btn">Live Demo</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="contact-section" id="certifications">
+        <h2>Certifications</h2>
+        <div className="certifications-grid">
+          <div className="certification-card">
+            <div className="certification-icon"><FaAward /></div>
+            <div className="certification-content">
+              <h3>Artificial Intelligence Fundamentals</h3>
+              <p><strong>Organization:</strong> IBM SkillsBuild</p>
+              <p><strong>Completion Date:</strong> March 25, 2025</p>
+              <a href="#" className="certificate-btn">View Certificate</a>
+            </div>
+          </div>
+
+          <div className="certification-card">
+            <div className="certification-icon"><FaAward /></div>
+            <div className="certification-content">
+              <h3>Customer Engagement: Problem Solving and Process Controls</h3>
+              <p><strong>Organization:</strong> IBM SkillsBuild</p>
+              <p><strong>Completion Date:</strong> March 26, 2025</p>
+              <a href="#" className="certificate-btn">View Certificate</a>
+            </div>
+          </div>
+
+          <div className="certification-card">
+            <div className="certification-icon"><FaAward /></div>
+            <div className="certification-content">
+              <h3>Introduction to Internet of Things (IoT)</h3>
+              <p><strong>Organization:</strong> NPTEL (IIT Kharagpur)</p>
+              <p><strong>Achievement:</strong> Silver Badge</p>
+              <p><strong>Duration:</strong> July 2025 – October 2025</p>
+              <a href="#" className="certificate-btn">View Certificate</a>
+            </div>
+          </div>
+
+          <div className="certification-card">
+            <div className="certification-icon"><FaAward /></div>
+            <div className="certification-content">
+              <h3>Cloud Computing</h3>
+              <p><strong>Organization:</strong> NPTEL (IIT Kharagpur)</p>
+              <p><strong>Achievement:</strong> Elite Certificate</p>
+              <p><strong>Duration:</strong> July 2025 – October 2025</p>
+              <a href="#" className="certificate-btn">View Certificate</a>
+            </div>
+          </div>
+
+          <div className="certification-card">
+            <div className="certification-icon"><FaAward /></div>
+            <div className="certification-content">
+              <h3>Programming in Java</h3>
+              <p><strong>Organization:</strong> NPTEL (IIT Kharagpur)</p>
+              <p><strong>Achievement:</strong> Gold Badge</p>
+              <p><strong>Duration:</strong> January 2026 – April 2026</p>
+              <a href="#" className="certificate-btn">View Certificate</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="contact-section reveal-section" id="experience">
+        <h2>Work Experience</h2>
+        <div className="experience-card">
+          <div className="experience-icon">
+            <FaBriefcase />
+          </div>
+          <div className="experience-content">
+            <h3>Full Stack Developer Intern</h3>
+            <p className="experience-company">Sammridhi Anveshna Pvt. Ltd.</p>
+            <p className="experience-duration">Present</p>
+            <ul>
+              <li>Working on a full-stack web application.</li>
+              <li>Collaborating with the development team using Git and GitHub.</li>
+              <li>Contributing to frontend and backend development tasks.</li>
+              <li>Participating in documentation, technical stack analysis, and knowledge transfer sessions.</li>
+              <li>Learning and working with React, Firebase, and modern project architecture.</li>
+            </ul>
+            <a href="#" className="certificate-btn">View Certificate</a>
+          </div>
+        </div>
+
+        <div className="experience-card">
+          <div className="experience-icon">
+            <FaBriefcase />
+          </div>
+          <div className="experience-content">
+            <h3>Industrial Trainee</h3>
+            <p className="experience-company">Radiant Appliances and Electronics Pvt. Ltd.</p>
+            <p className="experience-duration">June 2023 – November 2023</p>
+            <ul>
+              <li>Received practical training in electronics systems and device testing procedures.</li>
+              <li>Assisted in TV sound quality testing and audio performance evaluation.</li>
+              <li>Performed TV display inspection and screen quality verification.</li>
+              <li>Gained hands-on experience in troubleshooting electronic components and quality control processes.</li>
+              <li>Strengthened technical knowledge, teamwork, and problem-solving skills in a professional manufacturing environment.</li>
+            </ul>
+            <a href="#" className="certificate-btn">View Certificate</a>
+          </div>
+        </div>
+      </section>
+
+      <section className="contact-section" id="education">
+        <h2>Education</h2>
+        <div className="education-grid">
+          <div className="education-card">
+            <div className="education-icon"><FaBriefcase /></div>
+            <div className="education-content">
+              <h3>Bachelor of Technology (B.Tech) – Computer Science and Engineering (Artificial Intelligence & Machine Learning)</h3>
+              <p><strong>Institution:</strong> AVN Institute of Engineering and Technology, Rangareddy, Hyderabad</p>
+              <p><strong>Duration:</strong> 2024 – 2027 (Pursuing)</p>
+              <p><strong>CGPA:</strong> 7.66</p>
+            </div>
+          </div>
+
+          <div className="education-card">
+            <div className="education-icon"><FaBriefcase /></div>
+            <div className="education-content">
+              <h3>Diploma in Electronics and Communication Engineering</h3>
+              <p><strong>Institution:</strong> Kodada Institute of Technology and Science for Women, Kodad, Suryapet</p>
+              <p><strong>Duration:</strong> 2021 – 2024</p>
+              <p><strong>CGPA:</strong> 8.44</p>
+            </div>
+          </div>
+
+          <div className="education-card">
+            <div className="education-icon"><FaBriefcase /></div>
+            <div className="education-content">
+              <h3>Secondary School Certificate (SSC)</h3>
+              <p><strong>Institution:</strong> Gitanjali Vidhyaniketan, Khammam</p>
+              <p><strong>Duration:</strong> 2011 – 2021</p>
+              <p><strong>CGPA:</strong> 10.0</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="contact-section" id="contact">
+        <h2>Contact Me</h2>
+        <div className="contact-links">
+          <a href="mailto:chandhanaarpula@gmail.com">
+            <MdEmail /> chandhanaarpula@gmail.com
+          </a>
+          <a href="https://www.linkedin.com/in/chandana-arpula" target="_blank" rel="noreferrer">
+            <FaLinkedin /> LinkedIn
+          </a>
+          <a href="https://github.com/chandhanaarpula" target="_blank" rel="noreferrer">
+            <FaGithub /> GitHub
+          </a>
+          <a href="tel:+1234567890">
+            <FaPhone /> +91 9948434379
+          </a>
+          <a href="https://maps.google.com/?q=Your+Location" target="_blank" rel="noreferrer">
+            <FaLocationDot /> Khammam,Telangana
+          </a>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+export default App;
