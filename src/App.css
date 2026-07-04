@@ -459,26 +459,53 @@ button:hover, .certificate-btn:hover{
 }
 
 @media (max-width: 767px) {
+    .portfolio-app{
+        padding-top:72px;
+    }
+
     .navbar{
+        position:fixed;
+        top:0;
+        left:0;
+        right:0;
         padding:16px 24px;
-        position:sticky;
+        height:72px;
+        box-shadow:0 6px 20px rgba(2, 8, 23, 0.3);
+    }
+
+    .logo{
+        font-size:22px;
+        line-height:1.2;
     }
 
     .menu-toggle{
         display:flex;
+        align-items:center;
+        justify-content:center;
+        width:44px;
+        height:44px;
+        margin-left:auto;
+        padding:0;
+        border-radius:50%;
+    }
+
+    .menu-toggle:hover{
+        background:rgba(56, 189, 248, 0.12);
     }
 
     .nav-links{
         display:flex;
         flex-direction:column;
         position:absolute;
-        top:100%;
-        left:0;
-        right:0;
+        top:calc(100% + 8px);
+        left:16px;
+        right:16px;
         background:#111827;
-        padding:0 24px;
+        padding:0 16px;
         gap:0;
-        border-top:1px solid #1f2937;
+        border:1px solid #1f2937;
+        border-radius:12px;
+        box-shadow:0 12px 30px rgba(2, 8, 23, 0.3);
         max-height:0;
         overflow:hidden;
         opacity:0;
@@ -488,24 +515,21 @@ button:hover, .certificate-btn:hover{
 
     .nav-links.open{
         max-height:320px;
-        padding:16px 24px 24px;
+        padding:16px;
         opacity:1;
         pointer-events:auto;
-    }
-
-    .nav-links.open li{
-        transform:translateY(0);
-        opacity:1;
     }
 
     .nav-links li{
         opacity:0;
         transform:translateY(-6px);
         transition:transform 0.25s ease, opacity 0.25s ease;
+        font-size:16px;
     }
 
-    .nav-links li{
-        font-size:16px;
+    .nav-links.open li{
+        opacity:1;
+        transform:translateY(0);
     }
 
     .hero{
