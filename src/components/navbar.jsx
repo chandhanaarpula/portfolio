@@ -1,16 +1,30 @@
-function Navbar() {
+function Navbar({ activeSection = "home", onNavClick }) {
+  const navItems = [
+    { id: "home", label: "Home" },
+    { id: "about", label: "About" },
+    { id: "skills", label: "Skills" },
+    { id: "projects", label: "Projects" },
+    { id: "certifications", label: "Certifications" },
+    { id: "education", label: "Education" },
+    { id: "contact", label: "Contact" },
+  ];
+
   return (
     <nav className="navbar">
       <h2 className="logo">Chandana Arpula</h2>
 
       <ul className="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#certifications">Certifications</a></li>
-        <li><a href="#education">Education</a></li>
-        <li><a href="#contact">Contact</a></li>
+        {navItems.map((item) => (
+          <li key={item.id} className={activeSection === item.id ? "active" : ""}>
+            <a
+              href={`#${item.id}`}
+              className={activeSection === item.id ? "active" : ""}
+              onClick={(event) => onNavClick?.(item.id, event)}
+            >
+              {item.label}
+            </a>
+          </li>
+        ))}
       </ul>
     </nav>
   );

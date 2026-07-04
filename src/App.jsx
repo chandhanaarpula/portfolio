@@ -1,5 +1,5 @@
 import "./App.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "./components/navbar";
 import profile from "./assets/profile.jpeg";
 import { MdEmail } from "react-icons/md";
@@ -9,6 +9,9 @@ import { SiExpress, SiPostman } from "react-icons/si";
 import { FaBriefcase, FaAward } from "react-icons/fa";
 
 function App() {
+  const [activeSection, setActiveSection] = useState("home");
+  const [showBackToTop, setShowBackToTop] = useState(false);
+
   useEffect(() => {
     const elements = document.querySelectorAll(".reveal-section");
     const observer = new IntersectionObserver(
@@ -28,8 +31,46 @@ function App() {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const sections = ["home", "about", "skills", "projects", "certifications", "education", "contact"]
+      .map((id) => document.getElementById(id))
+      .filter(Boolean);
+
+    const handleScroll = () => {
+      setShowBackToTop(window.scrollY > 300);
+
+      const currentSection = sections.reduce(
+        (closest, section) => {
+          const sectionTop = section.getBoundingClientRect().top;
+          if (sectionTop <= 140 && sectionTop > closest.top) {
+            return { id: section.id, top: sectionTop };
+          }
+          return closest;
+        },
+        { id: "home", top: Infinity }
+      );
+
+      setActiveSection(currentSection.id);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const handleContactClick = () => {
     document.getElementById("contact")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  const handleNavClick = (id, event) => {
+    event.preventDefault();
+    setActiveSection(id);
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const skillGroups = [
@@ -68,7 +109,7 @@ function App() {
 
   return (
     <div className="portfolio-app">
-      <Navbar />
+      <Navbar activeSection={activeSection} onNavClick={handleNavClick} />
 
       <section className="hero reveal-section" id="home">
         <div className="hero-text">
@@ -85,7 +126,7 @@ function App() {
           </p>
 
           <div className="buttons">
-            <button onClick={() => window.open("/resume.docx", "_blank", "noopener,noreferrer")}>Download Resume</button>
+            <button onClick={() => window.open("/resume.pdf", "_blank", "noopener,noreferrer")}>View Resume</button>
             <button className="contact-btn" onClick={handleContactClick}>Contact Me</button>
           </div>
         </div>
@@ -174,7 +215,7 @@ function App() {
               <h3>Artificial Intelligence Fundamentals</h3>
               <p><strong>Organization:</strong> IBM SkillsBuild</p>
               <p><strong>Completion Date:</strong> March 25, 2025</p>
-              <a href="#" className="certificate-btn">View Certificate</a>
+              <a href="/certifications/artificial%20intelligence%20fundamentals.jpeg" className="certificate-btn" target="_blank" rel="noopener noreferrer">View Certificate</a>
             </div>
           </div>
 
@@ -184,7 +225,7 @@ function App() {
               <h3>Customer Engagement: Problem Solving and Process Controls</h3>
               <p><strong>Organization:</strong> IBM SkillsBuild</p>
               <p><strong>Completion Date:</strong> March 26, 2025</p>
-              <a href="#" className="certificate-btn">View Certificate</a>
+              <a href="/certifications/customer%20engagement%20problem%20solving%20and%20process%20control.jpeg" className="certificate-btn" target="_blank" rel="noopener noreferrer">View Certificate</a>
             </div>
           </div>
 
@@ -195,7 +236,7 @@ function App() {
               <p><strong>Organization:</strong> NPTEL (IIT Kharagpur)</p>
               <p><strong>Achievement:</strong> Silver Badge</p>
               <p><strong>Duration:</strong> July 2025 – October 2025</p>
-              <a href="#" className="certificate-btn">View Certificate</a>
+              <a href="/certifications/NPTEL%20iot.jpeg" className="certificate-btn" target="_blank" rel="noopener noreferrer">View Certificate</a>
             </div>
           </div>
 
@@ -206,7 +247,7 @@ function App() {
               <p><strong>Organization:</strong> NPTEL (IIT Kharagpur)</p>
               <p><strong>Achievement:</strong> Elite Certificate</p>
               <p><strong>Duration:</strong> July 2025 – October 2025</p>
-              <a href="#" className="certificate-btn">View Certificate</a>
+              <a href="/certifications/NPTEL%20cloud.jpeg" className="certificate-btn" target="_blank" rel="noopener noreferrer">View Certificate</a>
             </div>
           </div>
 
@@ -217,7 +258,19 @@ function App() {
               <p><strong>Organization:</strong> NPTEL (IIT Kharagpur)</p>
               <p><strong>Achievement:</strong> Gold Badge</p>
               <p><strong>Duration:</strong> January 2026 – April 2026</p>
-              <a href="#" className="certificate-btn">View Certificate</a>
+              <a href="/certifications/NPTEL%20java.jpeg" className="certificate-btn" target="_blank" rel="noopener noreferrer">View Certificate</a>
+            </div>
+          </div>
+
+          <div className="certification-card">
+            <div className="certification-icon"><FaAward /></div>
+            <div className="certification-content">
+              <h3>Generative AI &amp; Agentic AI Workshop</h3>
+              <p><strong>Organization:</strong> Lyntra Data</p>
+              <p><strong>Certificate Type:</strong> Workshop Participation Certificate</p>
+              <p><strong>Description:</strong> Successfully participated in a one-day Generative AI &amp; Agentic AI Workshop and gained practical knowledge of Generative AI, AI Agents, and modern AI applications.</p>
+              <p><strong>Year:</strong> 2026</p>
+              <a href="/certifications/gen%20ai%20certificate.jpeg" className="certificate-btn" target="_blank" rel="noopener noreferrer">View Certificate</a>
             </div>
           </div>
         </div>
@@ -319,6 +372,12 @@ function App() {
           </a>
         </div>
       </section>
+
+      {showBackToTop && (
+        <button type="button" className="back-to-top" onClick={scrollToTop} aria-label="Back to top">
+          ↑
+        </button>
+      )}
     </div>
   );
 }

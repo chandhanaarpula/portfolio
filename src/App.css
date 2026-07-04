@@ -88,6 +88,35 @@ body{
     width:100%;
 }
 
+.nav-links li.active::after{
+    width:100%;
+}
+
+.nav-links a.active{
+    color:#38bdf8;
+}
+
+.back-to-top{
+    position:fixed;
+    right:24px;
+    bottom:24px;
+    width:48px;
+    height:48px;
+    border-radius:50%;
+    padding:0;
+    margin-right:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:24px;
+    z-index:1000;
+    box-shadow:0 8px 20px rgba(56, 189, 248, 0.15);
+}
+
+.back-to-top:hover{
+    transform:translateY(-4px) scale(1.04);
+}
+
 /* Hero */
 
 .hero, .contact-section{
