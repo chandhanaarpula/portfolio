@@ -7,10 +7,16 @@ import { FaLinkedin, FaGithub, FaPhone, FaHtml5, FaCss3Alt, FaJsSquare, FaReact,
 import { FaLocationDot } from "react-icons/fa6";
 import { SiExpress, SiPostman } from "react-icons/si";
 import { FaBriefcase, FaAward } from "react-icons/fa";
+import emailjs from "@emailjs/browser";
 
 function App() {
   const [activeSection, setActiveSection] = useState("home");
   const [showBackToTop, setShowBackToTop] = useState(false);
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [formErrors, setFormErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState("");
+  const [submitStatus, setSubmitStatus] = useState("");
 
   useEffect(() => {
     const elements = document.querySelectorAll(".reveal-section");
@@ -71,6 +77,72 @@ function App() {
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const validateForm = () => {
+    const errors = {};
+
+    if (!formData.name.trim()) {
+      errors.name = "Name is required.";
+    }
+
+    if (!formData.email.trim()) {
+      errors.email = "Email is required.";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      errors.email = "Please enter a valid email address.";
+    }
+
+    if (!formData.message.trim()) {
+      errors.message = "Message is required.";
+    }
+
+    setFormErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    setFormErrors((prev) => ({ ...prev, [name]: "" }));
+    setSubmitMessage("");
+    setSubmitStatus("");
+  };
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+
+    if (!validateForm()) {
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitMessage("");
+    setSubmitStatus("");
+
+    try {
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+      if (!serviceId || !templateId || !publicKey) {
+        throw new Error("Email service configuration is missing.");
+      }
+
+      await emailjs.send(serviceId, templateId, {
+        from_name: formData.name,
+        from_email: formData.email,
+        message: formData.message,
+      }, publicKey);
+
+      setSubmitStatus("success");
+      setSubmitMessage("Your message has been sent successfully. I will get back to you soon.");
+      setFormData({ name: "", email: "", message: "" });
+    } catch (error) {
+      setSubmitStatus("error");
+      setSubmitMessage("Sorry, something went wrong. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const skillGroups = [
@@ -312,7 +384,7 @@ function App() {
               <li>Gained hands-on experience in troubleshooting electronic components and quality control processes.</li>
               <li>Strengthened technical knowledge, teamwork, and problem-solving skills in a professional manufacturing environment.</li>
             </ul>
-            <a href="#" className="certificate-btn">View Certificate</a>
+            <a href="/certifications/radiant.jpeg" className="certificate-btn" target="_blank" rel="noopener noreferrer">View Certificate</a>
           </div>
         </div>
       </section>
@@ -344,7 +416,7 @@ function App() {
             <div className="education-icon"><FaBriefcase /></div>
             <div className="education-content">
               <h3>Secondary School Certificate (SSC)</h3>
-              <p><strong>Institution:</strong> Gitanjali Vidhyaniketan, Khammam</p>
+              <p><strong>Institution:</strong> Gitanjali Vidyaniketan, Khammam</p>
               <p><strong>Duration:</strong> 2011 – 2021</p>
               <p><strong>CGPA:</strong> 10.0</p>
             </div>
@@ -371,6 +443,55 @@ function App() {
             <FaLocationDot /> Khammam,Telangana
           </a>
         </div>
+
+        <form className="contact-form" onSubmit={handleFormSubmit} noValidate>
+          <div className="form-group">
+            <label htmlFor="name">Name</label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              value={formData.name}
+              onChange={handleInputChange}
+              placeholder="Your name"
+            />
+            {formErrors.name && <span className="form-error">{formErrors.name}</span>}
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="email">Email</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              value={formData.email}
+              onChange={handleInputChange}
+              placeholder="Your email"
+            />
+            {formErrors.email && <span className="form-error">{formErrors.email}</span>}
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="message">Message</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="5"
+              value={formData.message}
+              onChange={handleInputChange}
+              placeholder="Your message"
+            />
+            {formErrors.message && <span className="form-error">{formErrors.message}</span>}
+          </div>
+
+          <button type="submit" className="contact-form-btn" disabled={isSubmitting}>
+            {isSubmitting ? "Sending..." : "Send Message"}
+          </button>
+
+          {submitMessage && (
+            <p className={`form-status ${submitStatus}`}>{submitMessage}</p>
+          )}
+        </form>
       </section>
 
       {showBackToTop && (

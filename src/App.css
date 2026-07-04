@@ -255,6 +255,94 @@ button:hover, .certificate-btn:hover{
     color:#38bdf8;
 }
 
+.contact-form{
+    margin-top:30px;
+    display:grid;
+    gap:16px;
+    max-width:600px;
+    padding:24px;
+    background:#0f172a;
+    border:1px solid #1f2937;
+    border-radius:16px;
+    box-shadow:0 12px 30px rgba(2, 8, 23, 0.25);
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+.form-group label{
+    color:#38bdf8;
+    font-size:15px;
+    font-weight:600;
+}
+
+.form-group input,
+.form-group textarea{
+    width:100%;
+    padding:12px 14px;
+    border:1px solid #334155;
+    border-radius:10px;
+    background:#111827;
+    color:white;
+    font-size:15px;
+    outline:none;
+    transition:border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus{
+    border-color:#38bdf8;
+    box-shadow:0 0 0 2px rgba(56, 189, 248, 0.15);
+}
+
+.form-group textarea{
+    resize:vertical;
+    min-height:120px;
+}
+
+.contact-form-btn{
+    width:max-content;
+    padding:14px 24px;
+    border:none;
+    border-radius:10px;
+    background:#38bdf8;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:transform 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease;
+}
+
+.contact-form-btn:hover{
+    transform:scale(1.03);
+    box-shadow:0 8px 20px rgba(56, 189, 248, 0.15);
+}
+
+.contact-form-btn:disabled{
+    opacity:0.7;
+    cursor:not-allowed;
+}
+
+.form-error{
+    color:#f87171;
+    font-size:13px;
+}
+
+.form-status{
+    font-size:14px;
+    margin-top:4px;
+}
+
+.form-status.success{
+    color:#4ade80;
+}
+
+.form-status.error{
+    color:#f87171;
+}
+
 /* Skills Section */
 
 .skills-section h2{
@@ -471,11 +559,13 @@ button:hover, .certificate-btn:hover{
         padding:16px 24px;
         height:72px;
         box-shadow:0 6px 20px rgba(2, 8, 23, 0.3);
+        gap:12px;
     }
 
     .logo{
         font-size:22px;
         line-height:1.2;
+        margin-right:8px;
     }
 
     .menu-toggle{
@@ -497,26 +587,29 @@ button:hover, .certificate-btn:hover{
         display:flex;
         flex-direction:column;
         position:absolute;
-        top:calc(100% + 8px);
-        left:16px;
+        top:calc(100% + 10px);
         right:16px;
+        width:min(240px, calc(100vw - 32px));
         background:#111827;
-        padding:0 16px;
-        gap:0;
-        border:1px solid #1f2937;
-        border-radius:12px;
-        box-shadow:0 12px 30px rgba(2, 8, 23, 0.3);
+        padding:10px;
+        gap:8px;
+        border:1px solid rgba(56, 189, 248, 0.16);
+        border-radius:14px;
+        box-shadow:0 16px 36px rgba(2, 8, 23, 0.35);
         max-height:0;
         overflow:hidden;
         opacity:0;
+        transform:translateY(-8px);
         pointer-events:none;
-        transition:max-height 0.3s ease, padding 0.3s ease, opacity 0.3s ease;
+        transition:max-height 0.3s ease, padding 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+        z-index:1100;
     }
 
     .nav-links.open{
-        max-height:320px;
-        padding:16px;
+        max-height:420px;
+        padding:10px;
         opacity:1;
+        transform:translateY(0);
         pointer-events:auto;
     }
 
@@ -525,11 +618,33 @@ button:hover, .certificate-btn:hover{
         transform:translateY(-6px);
         transition:transform 0.25s ease, opacity 0.25s ease;
         font-size:16px;
+        width:100%;
     }
 
     .nav-links.open li{
         opacity:1;
         transform:translateY(0);
+    }
+
+    .nav-links li::after{
+        content:none;
+    }
+
+    .nav-links li a{
+        display:block;
+        width:100%;
+        text-align:center;
+        padding:12px 14px;
+        border-radius:10px;
+        color:#f8fafc;
+        transition:background-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+    }
+
+    .nav-links li:hover a,
+    .nav-links li.active a{
+        background:#38bdf8;
+        color:#ffffff;
+        transform:translateY(-1px);
     }
 
     .hero{
@@ -541,6 +656,14 @@ button:hover, .certificate-btn:hover{
 
     .hero-text,
     .hero-image{
+        width:100%;
+    }
+
+    .contact-form{
+        padding:18px;
+    }
+
+    .contact-form-btn{
         width:100%;
     }
 
