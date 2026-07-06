@@ -54,7 +54,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const fullText = "Full Stack Developer | AI & ML Student";
+    const fullText = "Full Stack Developer";
     let currentIndex = 0;
 
     setTypedRole("");
@@ -250,7 +250,7 @@ function App() {
       <section className="contact-section reveal-section" id="about">
         <h2>About Me</h2>
         <p>
-          I am Chandhana Arpula, an aspiring B.Tech student in Artificial Intelligence & Machine Learning with a Diploma in Electronics. I am a Full Stack Developer and currently working as a Backend Developer Intern, building responsive, user-friendly, and scalable web applications. I am passionate about learning new technologies, solving real-world problems, and continuously improving my technical skills. My goal is to become a skilled Software Engineer and contribute to innovative software solutions that create meaningful impact.
+          I am Chandana Arpula, an aspiring B.Tech student in Artificial Intelligence & Machine Learning with a Diploma in Electronics. I am a Full Stack Developer and currently working as a Backend Developer Intern, building responsive, user-friendly, and scalable web applications. I am passionate about learning new technologies, solving real-world problems, and continuously improving my technical skills. My goal is to become a skilled Software Engineer and contribute to innovative software solutions that create meaningful impact.
         </p>
       </section>
 
