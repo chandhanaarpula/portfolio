@@ -357,8 +357,8 @@ function App() {
           <div className="experience-content">
             <h3>Full Stack Developer Intern</h3>
             <p className="experience-company">
-              <a href="https://sammridhi.in/" target="_blank" rel="noopener noreferrer" style={{ color: "inherit", textDecoration: "none" }}>
-                Sammridhi Anveshna Pvt. Ltd.
+              <a href="https://samriddhi Anveshana.in/" target="_blank" rel="noopener noreferrer" style={{ color: "inherit", textDecoration: "none" }}>
+                Samriddhi Anveshana Pvt. Ltd.
               </a>
             </p>
             <p className="experience-duration">Present</p>
