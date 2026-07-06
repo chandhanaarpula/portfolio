@@ -1,7 +1,7 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 import Navbar from "./components/navbar";
-import profile from "./assets/profile.jpeg";
+import profile from "./assets/profile26.jpeg";
 import { MdEmail } from "react-icons/md";
 import { FaLinkedin, FaGithub, FaPhone, FaHtml5, FaCss3Alt, FaJsSquare, FaReact, FaMobileAlt, FaNodeJs, FaDatabase, FaGitAlt, FaCode, FaFire } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
@@ -137,7 +137,7 @@ function App() {
       setSubmitStatus("success");
       setSubmitMessage("Your message has been sent successfully. I will get back to you soon.");
       setFormData({ name: "", email: "", message: "" });
-    } catch (error) {
+    } catch {
       setSubmitStatus("error");
       setSubmitMessage("Sorry, something went wrong. Please try again later.");
     } finally {
