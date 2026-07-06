@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Navbar from "./components/navbar";
 import profile from "./assets/profile26.jpeg";
 import { MdEmail } from "react-icons/md";
-import { FaLinkedin, FaGithub, FaPhone, FaHtml5, FaCss3Alt, FaJsSquare, FaReact, FaMobileAlt, FaNodeJs, FaDatabase, FaGitAlt, FaCode, FaFire } from "react-icons/fa";
+import { FaLinkedin, FaGithub, FaPhone, FaHtml5, FaCss3Alt, FaJsSquare, FaReact, FaMobileAlt, FaNodeJs, FaDatabase, FaGitAlt, FaCode, FaFire, FaFigma } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import { SiExpress, SiPostman } from "react-icons/si";
 import { FaBriefcase, FaAward } from "react-icons/fa";
@@ -188,7 +188,7 @@ function App() {
         { name: "JavaScript (ES6+)", icon: <FaJsSquare /> },
         { name: "React.js", icon: <FaReact /> },
         { name: "Responsive Web Design", icon: <FaMobileAlt /> },
-        { name: "Figma", icon: <FaHtml5 /> },
+        { name: "Figma", icon: <FaFigma /> },
       ],
     },
     {
@@ -231,7 +231,7 @@ function App() {
           </h2>
 
           <p>
-            Passionate Full Stack Developer and AI & ML student.
+            Passionate Full Stack Developer.
             I enjoy building responsive web applications using
             React, JavaScript, HTML, CSS and Node.js.
           </p>
