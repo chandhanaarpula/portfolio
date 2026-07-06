@@ -4,12 +4,13 @@ function Navbar({ activeSection = "home", onNavClick }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navItems = [
     { id: "home", label: "Home" },
-    { id: "about", label: "About" },
-    { id: "skills", label: "Skills" },
-    { id: "projects", label: "Projects" },
-    { id: "certifications", label: "Certifications" },
+    { id: "about", label: "About Me" },
     { id: "education", label: "Education" },
-    { id: "contact", label: "Contact" },
+    { id: "skills", label: "Skills" },
+    { id: "experience", label: "Work Experience" },
+    { id: "certifications", label: "Certifications" },
+    { id: "projects", label: "Projects" },
+    { id: "contact", label: "Contact Me" },
   ];
 
   const closeMenu = () => setIsMenuOpen(false);

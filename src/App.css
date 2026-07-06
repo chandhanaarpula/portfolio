@@ -12,6 +12,7 @@ body{
     background:#0f172a;
     font-family:Arial,sans-serif;
     color:white;
+    overflow-x:hidden;
 }
 
 .portfolio-app{
@@ -22,6 +23,7 @@ body{
     opacity:0;
     transform:translateY(30px);
     transition:opacity 0.8s ease, transform 0.8s ease;
+    will-change:opacity, transform;
 }
 
 .reveal-section.visible{
@@ -32,6 +34,17 @@ body{
 @keyframes fadeIn {
     from { opacity:0; }
     to { opacity:1; }
+}
+
+.scroll-progress-bar{
+    position:fixed;
+    top:0;
+    left:0;
+    height:3px;
+    background:linear-gradient(90deg, #38bdf8, #60a5fa);
+    z-index:2000;
+    box-shadow:0 0 10px rgba(56, 189, 248, 0.35);
+    transition:width 0.15s ease-out;
 }
 
 /* Navbar */
@@ -170,6 +183,23 @@ body{
 .hero-text h2{
     margin-top:15px;
     font-size:35px;
+    min-height:42px;
+}
+
+.hero-role-text{
+    display:inline-block;
+    min-height:1.2em;
+}
+
+.hero-cursor{
+    display:inline-block;
+    margin-left:2px;
+    color:#38bdf8;
+    animation:blink 0.8s steps(1, end) infinite;
+}
+
+@keyframes blink {
+    50% { opacity:0; }
 }
 
 .hero-text p{
@@ -193,6 +223,7 @@ button, .certificate-btn{
     font-size:17px;
     cursor:pointer;
     transition:transform 0.25s ease, box-shadow 0.25s ease;
+    will-change:transform, box-shadow;
 }
 
 .contact-btn{
@@ -201,7 +232,7 @@ button, .certificate-btn{
 }
 
 button:hover, .certificate-btn:hover{
-    transform:scale(1.03);
+    transform:translateY(-2px) scale(1.02);
     box-shadow:0 8px 20px rgba(56, 189, 248, 0.15);
 }
 
@@ -361,11 +392,12 @@ button:hover, .certificate-btn:hover{
     padding:20px;
     margin-bottom:20px;
     transition:transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    will-change:transform, box-shadow;
 }
 
 .experience-card:hover, .project-card:hover, .certification-card:hover{
-    transform:translateY(-4px);
-    box-shadow:0 10px 25px rgba(15, 23, 42, 0.25);
+    transform:translateY(-5px) scale(1.01);
+    box-shadow:0 14px 30px rgba(15, 23, 42, 0.25);
     border-color:#38bdf8;
 }
 
@@ -776,7 +808,7 @@ button:hover, .certificate-btn:hover{
 }
 
 .certificate-btn:hover{
-    transform:scale(1.05);
+    transform:translateY(-2px) scale(1.02);
 }
 
 .skill-group{
