@@ -356,7 +356,11 @@ function App() {
           </div>
           <div className="experience-content">
             <h3>Full Stack Developer Intern</h3>
-            <p className="experience-company">Sammridhi Anveshna Pvt. Ltd.</p>
+            <p className="experience-company">
+              <a href="https://sammridhi.in/" target="_blank" rel="noopener noreferrer" style={{ color: "inherit", textDecoration: "none" }}>
+                Sammridhi Anveshna Pvt. Ltd.
+              </a>
+            </p>
             <p className="experience-duration">Present</p>
             <ul>
               <li>Working on a full-stack web application.</li>
@@ -375,7 +379,11 @@ function App() {
           </div>
           <div className="experience-content">
             <h3>Industrial Trainee</h3>
-            <p className="experience-company">Radiant Appliances and Electronics Pvt. Ltd.</p>
+            <p className="experience-company">
+              <a href="https://www.radiantappliances.com/" target="_blank" rel="noopener noreferrer" style={{ color: "inherit", textDecoration: "none" }}>
+                Radiant Appliances and Electronics Pvt. Ltd.
+              </a>
+            </p>
             <p className="experience-duration">June 2023 – November 2023</p>
             <ul>
               <li>Received practical training in electronics systems and device testing procedures.</li>
@@ -396,7 +404,12 @@ function App() {
             <div className="education-icon"><FaBriefcase /></div>
             <div className="education-content">
               <h3>Bachelor of Technology (B.Tech) – Computer Science and Engineering (Artificial Intelligence & Machine Learning)</h3>
-              <p><strong>Institution:</strong> AVN Institute of Engineering and Technology, Rangareddy, Hyderabad</p>
+              <p>
+                <strong>Institution:</strong>{" "}
+                <a href="https://www.avniet.ac.in/" target="_blank" rel="noopener noreferrer" style={{ color: "inherit", textDecoration: "none" }}>
+                  AVN Institute of Engineering and Technology, Rangareddy, Hyderabad
+                </a>
+              </p>
               <p><strong>Duration:</strong> 2024 – 2027 (Pursuing)</p>
               <p><strong>CGPA:</strong> 7.66</p>
             </div>
@@ -406,7 +419,12 @@ function App() {
             <div className="education-icon"><FaBriefcase /></div>
             <div className="education-content">
               <h3>Diploma in Electronics and Communication Engineering</h3>
-              <p><strong>Institution:</strong> Kodada Institute of Technology and Science for Women, Kodad, Suryapet</p>
+              <p>
+                <strong>Institution:</strong>{" "}
+                <a href="https://www.kitsw.ac.in/" target="_blank" rel="noopener noreferrer" style={{ color: "inherit", textDecoration: "none" }}>
+                  Kodada Institute of Technology and Science for Women, Kodad, Suryapet
+                </a>
+              </p>
               <p><strong>Duration:</strong> 2021 – 2024</p>
               <p><strong>CGPA:</strong> 8.44</p>
             </div>
@@ -416,7 +434,12 @@ function App() {
             <div className="education-icon"><FaBriefcase /></div>
             <div className="education-content">
               <h3>Secondary School Certificate (SSC)</h3>
-              <p><strong>Institution:</strong> Gitanjali Vidyaniketan, Khammam</p>
+              <p>
+                <strong>Institution:</strong>{" "}
+                <a href="https://www.gitanjalividyaniketan.com/" target="_blank" rel="noopener noreferrer" style={{ color: "inherit", textDecoration: "none" }}>
+                  Gitanjali Vidyaniketan, Khammam
+                </a>
+              </p>
               <p><strong>Duration:</strong> 2011 – 2021</p>
               <p><strong>CGPA:</strong> 10.0</p>
             </div>
